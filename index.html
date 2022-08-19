@@ -14,7 +14,7 @@
         <div class="container-fluid Navbar pb-2">
            <div class="row">
             <div class="col-2 NavbarItem pt-3 ps-md-4 pe-md-4 d-flex">
-                <i class="fa-solid fa-bars NavbarItem pt-3 pb-3 pe-sm-3 ps-md-3 Tiles"></i>
+                <i class="fa-solid fa-bars NavbarItem pt-3 pb-3 pe-sm-3 ps-md-3" id="Tiles"></i>
                 <img src="./images/logo.png" class="NavbarItem BannerImage ms-md-2">
                 <h5 class="Keep NavbarItem">Keep</h5>
             </div>
@@ -41,27 +41,36 @@
     <!------------------------------------------- Body Section ------------------------------------------>
 <div class="container-fluid">
     <div class="row " style="border:1px solid green;">
-        <div class="col-2 mt-sm-3 a Sidebar ps-0 pe-0" style="border:1px solid rgb(250, 31, 250);" >
-            <ul class="SidebarUL ps-0" style="border:2px solid rgb(0, 0, 0);">
-                <li class="ps-sm-4 pt-2 pb-2 listItems" onclick="Active()" style="border:1px solid rgb(250, 31, 250);" ><a href="#" class="NavbarItem SNB1Text pt-2 pb-2"><img src="./images/bulb.PNG" class="SideNavbarIcons SNB1 NavbarItem me-sm-4">Notes </a></li>
-                <li class="ps-sm-4 pt-2 pb-2 listItems" onclick="Active()"><a href="#" class="NavbarItem SNB2Text pt-2 pb-2"><img src="./images/bell.PNG" class="SideNavbarIcons SNB2 NavbarItem me-sm-4">Reminders </a></li>
-                <li class="ps-sm-4 pt-2 pb-2 listItems" onclick="Active()"><a href="#" class="NavbarItem SNB3Text pt-2 pb-2"><img src="./images/pencil.PNG" class="SideNavbarIcons SNB3 NavbarItem me-sm-4">Edit labels </a></li>
-                <li class="ps-sm-4 pt-2 pb-2 listItems" onclick="Active()"><a href="#" class="NavbarItem SNB4Text pt-2 pb-2"><img src="./images/archive.PNG" class="SideNavbarIcons SNB4 NavbarItem me-sm-4">Archive </a></li>
-                <li class="ps-sm-4 pt-2 pb-2 listItems" onclick="Active()"><a href="#" class="NavbarItem SNB5Text pt-2 pb-2"><img src="./images/trash.png" class="SideNavbarIcons SNB5 NavbarItem me-sm-4">Bin </a></li>
+        <div class="  col-3 mt-sm-3 a Sidebar ps-0 pe-0 position-fixed" id="Sidebar" style="border:3px solid rgb(0, 68, 255);" >
+            <ul class="SidebarUL ps-0 me-sm-5 pe-sm-5" style="border:7px solid rgb(134, 204, 49);" id="SidebarUL"> 
+                <li class="ps-sm-4  listItems Item active"  style="border:1px solid rgb(250, 31, 250);" ><a href="#" class="NavbarItem SNB1Text pt-2 pb-2"><img src="./images/bulb.PNG" class="SideNavbarIcons SNB1 NavbarItem me-sm-4">Notes </a></li>
+                <li class="ps-sm-4 listItems Item" ><a href="#" class="NavbarItem SNB2Text pt-2 pb-2"><img src="./images/bell.PNG" class="SideNavbarIcons SNB2 NavbarItem me-sm-4">Reminders </a></li>
+                <li class="ps-sm-4 listItems Item" ><a href="#" class="NavbarItem SNB3Text pt-2 pb-2"><img src="./images/pencil.PNG" class="SideNavbarIcons SNB3 NavbarItem me-sm-4">Edit labels </a></li>
+                <li class="ps-sm-4 listItems Item" ><a href="#" class="NavbarItem SNB4Text pt-2 pb-2"><img src="./images/archive.PNG" class="SideNavbarIcons SNB4 NavbarItem me-sm-4">Archive </a></li>
+                <li class="ps-sm-4 listItems Item" ><a href="#" class="NavbarItem SNB5Text pt-2 pb-2"><img src="./images/trash.png" class="SideNavbarIcons SNB5 NavbarItem me-sm-4">Bin </a></li>
           
             </ul>
+            <div class="bottom ps-md-3"> Open-source License</div>
         </div>
-        <div class="col-10 NavbarItem" style="border:1px solid rgb(43, 226, 43);">
-         <div class="container NavbarItem mt-sm-5">
-          <div class="row NavbarItem ">
-        <div class="offset-md-3 col-6 d-flex AddNoteBar" style="border:1px solid rgb(196, 81, 28);">
-        <form>
-            <input type="text" class="AddNotes" placeholder="Take a note...">
-        </form>
-        <img src="./images/checkbox.svg" class="pe-sm-3 iconInNotes">
-        <img src="./images/pencil2.svg" class="pe-sm-3 iconInNotes">
-        <img src="./images/picture.svg" class="pe-sm-3 iconInNotes">
-        </div>
+        <div class="col-9 NavbarItem">
+         <div class="container mt-sm-5">
+          <div class="row ">
+        
+     
+            <div class="col-7 " style="border:5px solid rgb(192, 42, 31);"> 
+                 <div class="container NavbarItem" style="border:2px solid rgb(119, 189, 72);">
+                <div class="row" style="border:5px solid rgb(19, 41, 241);">
+                   <div class="col-4"><input type="text" placeholder="Take a note..." class="Title"></div>
+                    
+                    <img src="./images/checkbox.svg" class="Icons pe-md-3">
+                    <img src="./images/pencil2.svg" class="Icons pe-md-3">
+                    <img src="./images/picture.svg" class="Icons pe-md-3"> 
+                </div>
+                 </div>                
+                  
+            </div>
+           
+
           </div>
           <div class="row NavbarItem">
 

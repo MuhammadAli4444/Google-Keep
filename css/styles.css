@@ -113,28 +113,7 @@ input::placeholder {
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
-.AddNotes{
-    width: 500px;
-    height: 45px;
-    font-size: 24px;
-    font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
-    font-weight: 100px;
-    border:none;
-}
-.AddNoteBar
-{
-    border-radius: 7px;
-    border: none;
-    box-shadow:  2px 1px 3px 2px #b9b9b9;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    -ms-border-radius: 7px;
-    -o-border-radius: 7px;
-}
-.iconInNotes
-{
-    opacity: 0.5;
-}
+
 
 /*---------------------------------------------------------- Navbar Ends here ----------------------------------------------------------*/
 
@@ -156,8 +135,16 @@ a{
 }
 .Sidebar
 {
-    height: 100vh;
+  height: 100vh;
+  transition-property: width;
+  transition-duration:100ms ;
+  transition-timing-function:cubic-bezier(.17,.67,.83,.67);
+
 }
+.active{
+    background-color: #feefc3;
+}
+
 .SNB1,.SNB2,.SNB3,.SNB4,.SNB5{
     width: 25px;
     height: 25px;
@@ -169,12 +156,33 @@ a{
     font-size: 14px;
     font-weight: 520;
 }
-
+.Item {
+    padding-top: 10px;
+    padding-bottom: 10px;;
+}
+#Tiles,.cornerIconsInNavbar{
+    cursor:pointer;
+}
 .listItems:hover{
     background-color: #eeeeee;
-    border-radius: 0px 20px 20px 0px;
-    -webkit-border-radius: 0px 20px 20px 0px;
-    -moz-border-radius: 0px 20px 20px 0px;
-    -ms-border-radius: 0px 20px 20px 0px;
-    -o-border-radius: 0px 20px 20px 0px;
+
 }
+.squeeze{
+    width:200px;
+}
+
+/*------------------------------          Body Main Section  --------------------------------*/
+.Title{
+    width: 80%;
+}
+.Icons
+{
+    opacity: 0.5;
+    width:2675px;
+    height: 25px;
+}
+.bottom {
+    position: absolute;
+    bottom: 0;
+    
+ }

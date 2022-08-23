@@ -13,20 +13,50 @@ function ShowNoteSection()
   for (let i = 0; i < nodeList.length; i++) {
     nodeList[i].style.display="block";
   }
+  const nodeListt = document.querySelectorAll(".Iconss");
+  for (let i = 0; i < nodeListt.length; i++) {
+    nodeListt[i].style.display="none";
+  
+  }
 }
 function savedNotes()
 {
-  var title=document.getElementById("Title").value;
+  var titleValue=document.getElementById("Title").value;
   document.getElementById("Title").value="";
   document.getElementById("Title").placeholder="Take a note...";
   var Description=document.getElementById("Description").value;
+  console.log(Description);
   document.getElementById("Description").value="";
   document.getElementById("Description").placeholder=" Take a note...";
-  console.log(title);
-  localStorage.setItem(title,Description);
+NewData={title: titleValue,
+body: Description}
+ Data=localStorage.getItem('arr');
+ Data.title=Description
+ if(localStorage.getItem('arr')===null)
+ {
+  console.log(NewData)
+  window.localStorage.setItem("arr", JSON.stringify(NewData));
+
+ }
+ else
+ {
+  window.localStorage.setItem("arr", JSON.stringify(Data));
+ }
+
+localStorage.setItem('arr',JSON.stringify(Data));
+
   const nodeList = document.querySelectorAll(".Footer");
   for (let i = 0; i < nodeList.length; i++) {
     nodeList[i].style.display="none";
+  }
+  const nodeListt = document.querySelectorAll(".Iconss");
+  for (let i = 0; i < nodeListt.length; i++) {
+    nodeListt[i].style.display="block";
+  
+  }
+  if(titleValue!=null && Description!=null)
+  {
+  DisplayNotes();
   }
 }
 const windowsize=window.matchMedia("(max-width:800px)");
@@ -82,11 +112,36 @@ function SidebarClose()
 {
    if(document.getElementById("Sidebar").classList.contains("squeeze"))
    {
+    
     document.getElementById("Sidebar").classList.remove("squeeze");
+    var  a=document.getElementsByClassName("textNavbar");
+    for(i=0;i<a.length;i++)
+    {
+     a[i].style.display="inline";
+    }
    }
    else{
+   
     document.getElementById("Sidebar").classList.add("squeeze");
+   var  a=document.getElementsByClassName("textNavbar");
+   for(i=0;i<a.length;i++)
+   {
+    a[i].style.display="none";
+   }
    }
 }
 
 
+/*------------------------------Display Notes ------------------------------------------------------*/
+function DisplayNotes()
+{
+
+}
+
+/*
+  var note = document.createElement("div");
+  note.innerHTML=" My name is jan aoh jan<div class='Description'>Hwelooo</div>"
+  note.classList.add('Notes', 'col-3', 'mt-4', 'pt-md-3', 'pb-md-3' ,'TitleOfNote' ,'ps-md-4')
+console.log(note);
+document.getElementById("BodyRow").appendChild(note)
+*/

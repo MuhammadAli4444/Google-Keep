@@ -168,7 +168,7 @@ a{
 
 }
 .squeeze{
-    width:200px;
+    width:160px;
 }
 textarea {
     resize: none;
@@ -179,7 +179,7 @@ textarea {
 /*------------------------------          Body Main Section  --------------------------------*/
 .Title{
     width: 100%;
-    height: 50px;
+    height: 40px;
     border: none;
     font-size: 14px;
 }
@@ -202,11 +202,11 @@ textarea {
  .MainBody{
     border:1px solid rgb(184, 184, 184);
     box-shadow: 1px 1px 9px 1px rgb(170, 170, 170);
-    border-radius: 20px;;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
  .textare{
     border: none;
@@ -216,4 +216,27 @@ textarea {
  }
  .Footer{
     display:none;
+ }
+ .textNavbar
+ {
+    display: inline;
+ }
+ /*--------------Notes section --------------------------------- */
+ .Notes
+ {
+    border: 1px solid rgb(207, 207, 207);
+    box-shadow: 1px 1px 1px 1px rgb(206, 206, 206);
+    border-radius: 10px;;
+    word-wrap: break-word;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+ .TitleOfNote
+ {
+    font-size: 20px;
+ }
+ .Description{
+    font-size: 17px;;
  }

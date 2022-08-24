@@ -4,7 +4,24 @@ document.getElementById("Close").addEventListener("click",savedNotes);
 const box=document.querySelector(".MainBody");
 document.addEventListener("click",function(event){
   if(event.target.closest(".MainBody")) return;
-  savedNotes()
+  const nodeList = document.querySelectorAll(".Footer");
+  for (let i = 0; i < nodeList.length; i++) {
+    nodeList[i].style.display="none";
+  }
+  const nodeListt = document.querySelectorAll(".Iconss");
+  for (let i = 0; i < nodeListt.length; i++) {
+    nodeListt[i].style.display="block";
+  
+  }
+if(document.getElementById("Title").value==="" &&  document.getElementById("Description").value==="" )
+{
+
+}
+else{
+  console.log("hello"+document.getElementById("Title").value+" hggg")
+  savedNotes();
+}
+
 })
 function ShowNoteSection()
 {
@@ -25,39 +42,30 @@ function savedNotes()
   document.getElementById("Title").value="";
   document.getElementById("Title").placeholder="Take a note...";
   var Description=document.getElementById("Description").value;
-  console.log(Description);
+
   document.getElementById("Description").value="";
   document.getElementById("Description").placeholder=" Take a note...";
-NewData={title: titleValue,
-body: Description}
- Data=localStorage.getItem('arr');
- Data.title=Description
- if(localStorage.getItem('arr')===null)
- {
-  console.log(NewData)
-  window.localStorage.setItem("arr", JSON.stringify(NewData));
-
- }
- else
- {
-  window.localStorage.setItem("arr", JSON.stringify(Data));
- }
-
-localStorage.setItem('arr',JSON.stringify(Data));
-
-  const nodeList = document.querySelectorAll(".Footer");
-  for (let i = 0; i < nodeList.length; i++) {
-    nodeList[i].style.display="none";
-  }
-  const nodeListt = document.querySelectorAll(".Iconss");
-  for (let i = 0; i < nodeListt.length; i++) {
-    nodeListt[i].style.display="block";
-  
-  }
-  if(titleValue!=null && Description!=null)
+if(titleValue!=null || Description!=null)
+{
+   NewNote=new Array(titleValue,Description);
+  if(window.localStorage.getItem("arr")===null)
   {
+  
+    array=new Array();
+    array.push(NewNote);
+  window.localStorage.setItem("arr", JSON.stringify(array));
   DisplayNotes();
   }
+  else{
+    DataInLocalStorage= JSON.parse(window.localStorage.getItem("arr"));
+    DataInLocalStorage.push(NewNote)
+    window.localStorage.setItem("arr",JSON.stringify(DataInLocalStorage))
+    DisplayNotes();
+  
+  }
+}
+
+
 }
 const windowsize=window.matchMedia("(max-width:800px)");
 windowsize.addEventListener("change",Resize);
@@ -135,13 +143,17 @@ function SidebarClose()
 /*------------------------------Display Notes ------------------------------------------------------*/
 function DisplayNotes()
 {
-
+const Data=JSON.parse(window.localStorage.getItem("arr"));
+Data.forEach(element => {
+  let Note=document.createElement("div");
+  Note.classList.add("card","mb-3",'mx-2')
+  Note.innerHTML=`<div class="card-body">
+  <h5 class="card-title">${element[0]}</h5>
+  <p class='card-text'>${element[1]}</p>
+</div>`;
+document.getElementById("BodyRow").appendChild(Note);
+console.log(Note)
+});
 }
 
-/*
-  var note = document.createElement("div");
-  note.innerHTML=" My name is jan aoh jan<div class='Description'>Hwelooo</div>"
-  note.classList.add('Notes', 'col-3', 'mt-4', 'pt-md-3', 'pb-md-3' ,'TitleOfNote' ,'ps-md-4')
-console.log(note);
-document.getElementById("BodyRow").appendChild(note)
-*/
+window.onload = DisplayNotes()

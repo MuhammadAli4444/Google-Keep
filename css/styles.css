@@ -228,6 +228,7 @@ textarea {
     box-shadow: 1px 1px 1px 1px rgb(206, 206, 206);
     border-radius: 10px;;
     word-wrap: break-word;
+    margin: 5px;;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
@@ -240,3 +241,19 @@ textarea {
  .Description{
     font-size: 17px;;
  }
+
+
+ .card{
+    max-width: 21rem;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px rgb(196, 196, 196);
+}
+.BodyS
+{
+    background-image: url("/images/MainBodyBackgroundImage.PNG");
+}

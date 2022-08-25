@@ -132,6 +132,7 @@ a{
 }
 .listItems{
     border-radius: 0px 20px 20px 0px;
+    width: 120%;
 }
 .Sidebar
 {
@@ -168,7 +169,7 @@ a{
 
 }
 .squeeze{
-    width:160px;
+    width:100px;
 }
 textarea {
     resize: none;
@@ -191,11 +192,10 @@ textarea {
 }
 .Icons:hover{cursor: pointer; 
 }
-.bottom {
-    position: absolute;
-    bottom: 0;
-    
- }
+.SidebarLicenseFooterLine{
+    font-size: 1rem;
+    opacity: 0.6;
+}
  .Close:hover{
     background-color: #f3f3f3;
  }
@@ -251,9 +251,10 @@ textarea {
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    box-shadow: 1px 1px 1px 1px rgb(196, 196, 196);
+   
 }
 .BodyS
 {
     background-image: url("/images/MainBodyBackgroundImage.PNG");
 }
+

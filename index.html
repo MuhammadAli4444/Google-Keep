@@ -3,8 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Google Keep</title>
         <link rel="icon" type="image/x-icon" href="./images/favicon.png">
         <link rel="stylesheet" href="./css/styles.css">
@@ -20,7 +19,7 @@
             </div>
             <div class="col-6  pt-2 ps-md-0 SearchBox  "> 
                     <div class="SearchSection mt-2" id="SearchSection">
-                        <input type="text" class="form-control" placeholder="    Search" >       
+                        <input type="text" class="form-control" placeholder="    Search" id="SearchBar">       
                     </div>
                   <div class="d-flex justify-content-end ">
                     <div class="Searchh " id="Searchh">
@@ -41,9 +40,9 @@
     <!------------------------------------------- Body Section ------------------------------------------>
 <div class="container-fluid">
     <div class="row " >
-        <div class=" col-3 mt-sm-3 Sidebar ps-0 pe-0 " id="Sidebar">
-            <ul class="SidebarUL ps-0 me-sm-5 pe-sm-5"  id="SidebarUL"> 
-                <li class="ps-sm-4  listItems Item active"   ><a href="#" class="SNB1Text "><img src="./images/bulb.PNG" class="SideNavbarIcons SNB1 me-sm-4">
+        <div class=" col-2 NavbarItem mt-sm-3 Sidebar ps-0 pe-0 " id="Sidebar">
+            <ul class="SidebarUL ps-0 pe-sm-5 NavbarItem"  id="SidebarUL"> 
+                <li class="ps-sm-4  listItems Item active NavbarItem"   ><a href="#" class="SNB1Text "><img src="./images/bulb.PNG" class="SideNavbarIcons SNB1 me-sm-4">
                     <div class="textNavbar">Notes</div> </a></li>
                 <li class="ps-sm-4 listItems Item" ><a href="#" class=" SNB2Text"><img src="./images/bell.PNG" class="SideNavbarIcons SNB2  me-sm-4">
                     <div class="textNavbar ">Reminders </div></a></li>
@@ -56,15 +55,15 @@
                     ">Bin</div> </a></li>
           
             </ul>
-            <div class="bottom ps-md-3"> Open-source License</div>
+            <div class="ps-md-3 pt-5 SidebarLicenseFooterLine"> Open-source License</div>
         </div>
-        <div class="col NavbarItem">
-         <div class="container mt-sm-5">
-          <div class="row BodyS">
+        <div class="col  NavbarItem ps-0">
+         <div class="container mt-sm-5 ">
+          <div class="row BodyS ">
         
      
-            <div class="col-6 " > 
-                 <div class="container MainBody ms-md-5 "   >
+            <div class="col-6 offset-md-3" > 
+                 <div class="container MainBody  "   >
                 <div class="row "  >
                    <div class="col-md-8"   >
                     <input type="text" placeholder="Take a note..." class="Title mt-1" id="Title" ></div>
@@ -87,18 +86,45 @@
                         <button type="button" class="btn Close" id="Close">Close</button>
                     </div>
                 </div>
+                
                  </div>                
                   
             </div>
            
 
           </div>
-          <div class="row pt-3" data-masonry='{"percentPosition": true }' id="BodyRow">
-            
+          <div class="row pt-5" data-masonry='{"percentPosition": true }' id="BodyRow">
+    
          </div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade staticBackdrop" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div  class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">
+       <input type="text" class="ModalTitle">            
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <textarea rows="4" cols="60" class="ModalBody" >
+
+          </textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+     
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
   
 <script type="text/javascript" src="./javascript/jsfile.js"></script>

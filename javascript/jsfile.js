@@ -1,6 +1,8 @@
 document.getElementById("Tiles").addEventListener("click",SidebarClose);
 document.getElementById("Title").addEventListener("focus",ShowNoteSection);
 document.getElementById("Close").addEventListener("click",savedNotes);
+document.getElementById("SearchBar").addEventListener("input",SearchNotes);
+
 const box=document.querySelector(".MainBody");
 document.addEventListener("click",function(event){
   if(event.target.closest(".MainBody")) return;
@@ -18,7 +20,6 @@ if(document.getElementById("Title").value==="" &&  document.getElementById("Desc
 
 }
 else{
-  console.log("hello"+document.getElementById("Title").value+" hggg")
   savedNotes();
 }
 
@@ -38,10 +39,10 @@ function ShowNoteSection()
 }
 function savedNotes()
 {
-  var titleValue=document.getElementById("Title").value;
+  let titleValue=document.getElementById("Title").value;
   document.getElementById("Title").value="";
   document.getElementById("Title").placeholder="Take a note...";
-  var Description=document.getElementById("Description").value;
+  let Description=document.getElementById("Description").value;
 
   document.getElementById("Description").value="";
   document.getElementById("Description").placeholder=" Take a note...";
@@ -81,6 +82,7 @@ for (let i = 0; i < nodeList.length; i++) {
   nodeList[i].style.display="none";
 
 }
+SidebarClose()
 
        }
        else{
@@ -103,15 +105,15 @@ function SearchButton()
 
 //Sidebar active li code
 // Get the container element
-var btnContainer = document.getElementById("SidebarUL");
+let btnContainer = document.getElementById("SidebarUL");
 
 // Get all buttons with class="btn" inside the container
-var btns = btnContainer.getElementsByClassName("Item");
+let btns = btnContainer.getElementsByClassName("Item");
 
 // Loop through the buttons and add the active class to the current/clicked button
-for (var i = 0; i < btns.length; i++) {
+for (let i = 0; i < btns.length; i++) {
   btns[i].addEventListener("click", function() {
-    var current = document.getElementsByClassName("active");
+    let current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
     this.className += " active";
   });
@@ -122,7 +124,7 @@ function SidebarClose()
    {
     
     document.getElementById("Sidebar").classList.remove("squeeze");
-    var  a=document.getElementsByClassName("textNavbar");
+    let  a=document.getElementsByClassName("textNavbar");
     for(i=0;i<a.length;i++)
     {
      a[i].style.display="inline";
@@ -131,7 +133,7 @@ function SidebarClose()
    else{
    
     document.getElementById("Sidebar").classList.add("squeeze");
-   var  a=document.getElementsByClassName("textNavbar");
+   let  a=document.getElementsByClassName("textNavbar");
    for(i=0;i<a.length;i++)
    {
     a[i].style.display="none";
@@ -143,17 +145,63 @@ function SidebarClose()
 /*------------------------------Display Notes ------------------------------------------------------*/
 function DisplayNotes()
 {
+removeAllChildNodes(document.querySelector('#BodyRow'));
 const Data=JSON.parse(window.localStorage.getItem("arr"));
 Data.forEach(element => {
   let Note=document.createElement("div");
   Note.classList.add("card","mb-3",'mx-2')
+  Note.setAttribute("data-bs-toggle","modal");
+  Note.setAttribute("data-bs-target",".staticBackdrop");
   Note.innerHTML=`<div class="card-body">
   <h5 class="card-title">${element[0]}</h5>
   <p class='card-text'>${element[1]}</p>
 </div>`;
 document.getElementById("BodyRow").appendChild(Note);
-console.log(Note)
+
 });
 }
 
 window.onload = DisplayNotes()
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+}
+
+
+/*  Search Box implementation */
+function SearchNotes()
+{
+  const Note=document.getElementById("SearchBar").value;
+  const NotesInLocalStorage=JSON.parse(window.localStorage.getItem("arr"));
+
+  removeAllChildNodes(document.querySelector('#BodyRow'));
+  NotesInLocalStorage.forEach((element)=>
+  {
+ if(element[0].includes(Note) || element[1].includes(Note))
+ {
+  let Note=document.createElement("div");
+  Note.classList.add("card","mb-3",'mx-2');
+  Note.setAttribute("data-bs-toggle","modal");
+  Note.setAttribute("data-bs-target","#exampleModal");
+  Note.innerHTML=`<div class="card-body">
+  <h5 class="card-title">${element[0]}</h5>
+  <p class='card-text'>${element[1]}</p>
+</div>`;
+document.getElementById("BodyRow").appendChild(Note);
+ }
+  });
+}
+
+const ClickOnCard=document.querySelectorAll(".card");
+
+
+ClickOnCard.forEach((element)=>
+{
+element.addEventListener("click",()=>
+{
+  console.log(element.innerText)
+  
+})
+})
+

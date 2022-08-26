@@ -3,6 +3,7 @@ document.getElementById("Title").addEventListener("focus",ShowNoteSection);
 document.getElementById("Close").addEventListener("click",savedNotes);
 document.getElementById("SearchBar").addEventListener("input",SearchNotes);
 
+
 const box=document.querySelector(".MainBody");
 document.addEventListener("click",function(event){
   if(event.target.closest(".MainBody")) return;
@@ -22,7 +23,6 @@ if(document.getElementById("Title").value==="" &&  document.getElementById("Desc
 else{
   savedNotes();
 }
-
 })
 function ShowNoteSection()
 {
@@ -51,8 +51,7 @@ if(titleValue!=null || Description!=null)
    NewNote=new Array(titleValue,Description);
   if(window.localStorage.getItem("arr")===null)
   {
-  
-    array=new Array();
+      array=new Array();
     array.push(NewNote);
   window.localStorage.setItem("arr", JSON.stringify(array));
   DisplayNotes();
@@ -147,10 +146,11 @@ function DisplayNotes()
 {
 removeAllChildNodes(document.querySelector('#BodyRow'));
 const Data=JSON.parse(window.localStorage.getItem("arr"));
-Data.forEach(element => {
+Data.forEach((element,index) => {
   let Note=document.createElement("div");
   Note.classList.add("card","mb-3",'mx-2')
   Note.setAttribute("data-bs-toggle","modal");
+  Note.setAttribute("id",`${index}`)
   Note.setAttribute("data-bs-target",".staticBackdrop");
   Note.innerHTML=`<div class="card-body">
   <h5 class="card-title">${element[0]}</h5>
@@ -183,6 +183,7 @@ function SearchNotes()
   let Note=document.createElement("div");
   Note.classList.add("card","mb-3",'mx-2');
   Note.setAttribute("data-bs-toggle","modal");
+  Note.setAttribute("id",`${index}`)
   Note.setAttribute("data-bs-target","#exampleModal");
   Note.innerHTML=`<div class="card-body">
   <h5 class="card-title">${element[0]}</h5>
@@ -196,12 +197,29 @@ document.getElementById("BodyRow").appendChild(Note);
 const ClickOnCard=document.querySelectorAll(".card");
 
 
-ClickOnCard.forEach((element)=>
+ClickOnCard.forEach((element,index)=>
 {
+
 element.addEventListener("click",()=>
 {
-  console.log(element.innerText)
+
+  const NoteTitle=element.querySelector(".card-title").innerText;
+  const NoteBody=element.querySelector(".card-text").innerText;
+  // element.setAttribute("id",`id${index}`)
   
-})
+  document.getElementById("ModalTitle").value=NoteTitle;
+  document.getElementById("ModalBody").innerText=NoteBody;
+  document.querySelector("#modal-dialog").setAttribute("id",index)
+ } )
 })
 
+document.getElementById("ModalCloseButoon").addEventListener("mousedown",()=>
+{
+  console.log(document.getElementById("modal-dialog"));
+})
+
+// function EditNotes(value)
+// {
+// const ID=document.querySelector(".card").getAttribute("id")
+// console.log(value);
+// }

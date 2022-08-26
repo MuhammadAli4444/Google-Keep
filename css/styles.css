@@ -258,3 +258,19 @@ textarea {
     background-image: url("/images/MainBodyBackgroundImage.PNG");
 }
 
+.ModalBody
+{
+    border: 1px solid rgb(221, 221, 221);
+    outline: none;
+}
+.ModalTitle
+{
+    border: none;
+}
+/* Modal settings*/
+.ModalFooterImage
+{
+width:20px;
+height: 20px;
+opacity: 0.6;
+}

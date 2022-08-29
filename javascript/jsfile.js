@@ -1,8 +1,8 @@
+DisplayNotes()
 document.getElementById("Tiles").addEventListener("click",SidebarClose);
 document.getElementById("Title").addEventListener("focus",ShowNoteSection);
 document.getElementById("Close").addEventListener("click",savedNotes);
 document.getElementById("SearchBar").addEventListener("input",SearchNotes);
-
 
 const box=document.querySelector(".MainBody");
 document.addEventListener("click",function(event){
@@ -57,7 +57,7 @@ if(titleValue!=null || Description!=null)
   DisplayNotes();
   }
   else{
-    DataInLocalStorage= JSON.parse(window.localStorage.getItem("arr"));
+    DataInLocalStorage=  JSON.parse(window.localStorage.getItem("arr"))
     DataInLocalStorage.push(NewNote)
     window.localStorage.setItem("arr",JSON.stringify(DataInLocalStorage))
     DisplayNotes();
@@ -161,7 +161,7 @@ document.getElementById("BodyRow").appendChild(Note);
 });
 }
 
-window.onload = DisplayNotes()
+
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
@@ -196,30 +196,31 @@ document.getElementById("BodyRow").appendChild(Note);
 
 const ClickOnCard=document.querySelectorAll(".card");
 
-
 ClickOnCard.forEach((element,index)=>
 {
 
 element.addEventListener("click",()=>
 {
-
-  const NoteTitle=element.querySelector(".card-title").innerText;
-  const NoteBody=element.querySelector(".card-text").innerText;
-  // element.setAttribute("id",`id${index}`)
   
+  window.localStorage.setItem("Flag",index);
+  const Index=window.localStorage.getItem("Flag");
+  console.log("jjjj")
+  let NoteTitle="";
+  let NoteBody="";
+  NoteTitle=element.querySelector(".card-title").innerText;
+  NoteBody=element.querySelector(".card-text").innerText;
   document.getElementById("ModalTitle").value=NoteTitle;
   document.getElementById("ModalBody").innerText=NoteBody;
-  document.querySelector("#modal-dialog").setAttribute("id",index)
- } )
-})
 
+ } )
+ 
+})
 document.getElementById("ModalCloseButoon").addEventListener("mousedown",()=>
 {
-  console.log(document.getElementById("modal-dialog"));
+  const Index=window.localStorage.getItem("Flag");
+  const DataStorage=  JSON.parse(window.localStorage.getItem("arr"))
+  DataStorage[Index]=[document.getElementById("ModalTitle").value,document.getElementById("ModalBody").value]
+  window.localStorage.setItem("arr",JSON.stringify(DataStorage))
+  console.log(Index)
+  DisplayNotes();
 })
-
-// function EditNotes(value)
-// {
-// const ID=document.querySelector(".card").getAttribute("id")
-// console.log(value);
-// }

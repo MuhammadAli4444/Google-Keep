@@ -1,9 +1,9 @@
 DisplayNotes()
-document.getElementById("Tiles").addEventListener("click",SidebarClose);
+document.getElementById("TilesInNavbar").addEventListener("click",SidebarClose);
 document.getElementById("Title").addEventListener("focus",ShowNoteSection);
 document.getElementById("Close").addEventListener("click",savedNotes);
-document.getElementById("SearchBar").addEventListener("input",SearchNotes);
-
+document.querySelector(".DeleteNote").addEventListener("click",DeleteNote)
+document.querySelector(".ArchieveNote").addEventListener("click",ArchieveNote)
 const box=document.querySelector(".MainBody");
 document.addEventListener("click",function(event){
   if(event.target.closest(".MainBody")) return;
@@ -61,8 +61,11 @@ if(titleValue!=null || Description!=null)
     DataInLocalStorage.push(NewNote)
     window.localStorage.setItem("arr",JSON.stringify(DataInLocalStorage))
     DisplayNotes();
-  
-  }
+   }
+   const nodeList = document.querySelectorAll(".Footer");
+   for (let i = 0; i < nodeList.length; i++) {
+     nodeList[i].style.display="none";
+   }
 }
 
 
@@ -75,18 +78,17 @@ function Resize(Argument_)
     {
       
        document.getElementById("SearchSection").style.display="none";
-       document.getElementById("Searchh").style.display="block";
+       document.getElementById("MaginifiyingGlass").style.display="block";
        const nodeList = document.querySelectorAll(".Iconss");
 for (let i = 0; i < nodeList.length; i++) {
   nodeList[i].style.display="none";
 
 }
 SidebarClose()
-
        }
        else{
         document.getElementById("SearchSection").style.display="block";
-        document.getElementById("Searchh").style.display="none";
+        document.getElementById("MaginifiyingGlass").style.display="none";
         const nodeList = document.querySelectorAll(".Iconss");
         for (let i = 0; i < nodeList.length; i++) {
           nodeList[i].style.display="block";
@@ -94,10 +96,10 @@ SidebarClose()
        }
 
 } 
-document.getElementById("Searchh").addEventListener("click",SearchButton)
+document.getElementById("MaginifiyingGlass").addEventListener("click",SearchButton)
 function SearchButton()
 {
-    document.getElementById("Searchh").style.display="none";
+    document.getElementById("MaginifiyingGlass").style.display="none";
     document.getElementById("SearchSection").style.display="block";  
     document.getElementById("SearchSection").style.zIndex="1";
 }
@@ -169,58 +171,82 @@ function removeAllChildNodes(parent) {
 }
 
 
-/*  Search Box implementation */
-function SearchNotes()
-{
-  const Note=document.getElementById("SearchBar").value;
-  const NotesInLocalStorage=JSON.parse(window.localStorage.getItem("arr"));
+// search functionality
+const searchInput = document.getElementById("SearchBar");
+searchInput.addEventListener("input", function () {
+  const note1 = document.getElementById("MainBody");
+   if (searchInput.value) {
+    note1.style.display = "none";
+  } else {
+    note1.style.display = "block";
 
-  removeAllChildNodes(document.querySelector('#BodyRow'));
-  NotesInLocalStorage.forEach((element)=>
-  {
- if(element[0].includes(Note) || element[1].includes(Note))
- {
-  let Note=document.createElement("div");
-  Note.classList.add("card","mb-3",'mx-2');
-  Note.setAttribute("data-bs-toggle","modal");
-  Note.setAttribute("id",`${index}`)
-  Note.setAttribute("data-bs-target","#exampleModal");
-  Note.innerHTML=`<div class="card-body">
-  <h5 class="card-title">${element[0]}</h5>
-  <p class='card-text'>${element[1]}</p>
-</div>`;
-document.getElementById("BodyRow").appendChild(Note);
- }
+  }
+  // closed.addEventListener("click", function () {
+  //   searchInput.value = "";
+  //   searchInput.focus();
+  // });
+  const inputVal = searchInput.value.toLowerCase();
+  const noteCards = document.getElementsByClassName("card");
+  console.log(noteCards)
+  Array.from(noteCards).forEach(function (element) {
+    const title = element.querySelector(".card-title").innerText;
+    const desc = element.querySelector(".card-text").innerText;
+    if (
+      title.toLowerCase().includes(inputVal) |
+      desc.toLowerCase().includes(inputVal)
+    ) {
+      element.style.display = "block";
+    } else {
+      element.style.display = "none";
+    }
   });
-}
+});
 
 const ClickOnCard=document.querySelectorAll(".card");
 
 ClickOnCard.forEach((element,index)=>
 {
-
 element.addEventListener("click",()=>
 {
-  
   window.localStorage.setItem("Flag",index);
   const Index=window.localStorage.getItem("Flag");
-  console.log("jjjj")
-  let NoteTitle="";
-  let NoteBody="";
-  NoteTitle=element.querySelector(".card-title").innerText;
-  NoteBody=element.querySelector(".card-text").innerText;
+  let NoteTitle=element.querySelector(".card-title").innerText;
+  let NoteBody=element.querySelector(".card-text").innerText;
   document.getElementById("ModalTitle").value=NoteTitle;
-  document.getElementById("ModalBody").innerText=NoteBody;
-
+  document.getElementById("ModalBody").value=NoteBody;
  } )
  
 })
+
 document.getElementById("ModalCloseButoon").addEventListener("mousedown",()=>
 {
   const Index=window.localStorage.getItem("Flag");
   const DataStorage=  JSON.parse(window.localStorage.getItem("arr"))
   DataStorage[Index]=[document.getElementById("ModalTitle").value,document.getElementById("ModalBody").value]
   window.localStorage.setItem("arr",JSON.stringify(DataStorage))
-  console.log(Index)
-  DisplayNotes();
+  const ClickOnCard=document.querySelectorAll(".card");
+  ClickOnCard.forEach((element,index)=>
+  {
+    if(index==Index)
+    {
+      element.querySelector(".card-title").innerText=document.getElementById("ModalTitle").value;
+      element.querySelector(".card-text").innerText=document.getElementById("ModalBody").value;
+    }
+  })
 })
+function DeleteNote()
+{
+  const Index=window.localStorage.getItem("Flag");
+  const DataStorage=  JSON.parse(window.localStorage.getItem("arr"));
+  DataStorage.splice(Index,1)
+  window.localStorage.setItem("arr", JSON.stringify(DataStorage));
+  DisplayNotes();
+}
+function ArchieveNote()
+{
+  const Index=window.localStorage.getItem("Flag");
+  const DataStorage=  JSON.parse(window.localStorage.getItem("arr"));
+  DataStorage.splice(Index,1)
+  window.localStorage.setItem("arr", JSON.stringify(DataStorage));
+  DisplayNotes();
+}

@@ -10,12 +10,12 @@
 {
     border: 1px solid rgb(4, 0, 255);
 }
-.BannerImage{
+.BannerImageInNavbar{
     width:41px;
     height: 42px;
 }
 @media screen and (max-width: 700px) {
-    .BannerImage{
+    .BannerImageInNavbar{
         width:30px;
         height: 30px;
     }
@@ -89,12 +89,12 @@ input::placeholder {
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
 }
-.Searchh{
+.MaginifiyingGlass{
     position: absolute;
     z-index: 20;
     top:20px;      
 }
-.Searchh:hover{
+.MaginifiyingGlass:hover{
     background-color: rgb(241, 241, 241);
     border-radius: 20px;
     padding: 4px;
@@ -104,7 +104,7 @@ input::placeholder {
     -o-border-radius: 20px;
 }
 
-.Tiles:hover{
+.TilesInNavbar:hover{
     background-color: rgb(228, 228, 228);
     border-radius: 20px;
     padding: 4px;
@@ -161,7 +161,7 @@ a{
     padding-top: 10px;
     padding-bottom: 10px;;
 }
-#Tiles,.cornerIconsInNavbar{
+#TilesInNavbar,.cornerIconsInNavbar{
     cursor:pointer;
 }
 .listItems:hover{

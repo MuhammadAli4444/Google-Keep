@@ -46,8 +46,9 @@ function savedNotes()
 
   document.getElementById("Description").value="";
   document.getElementById("Description").placeholder=" Take a note...";
-if(titleValue!=null || Description!=null)
+if((titleValue!=="" || Description!==""))
 {
+  console.log("dfghjkl")
    NewNote=new Array(titleValue,Description);
   if(window.localStorage.getItem("arr")===null)
   {
@@ -67,7 +68,7 @@ if(titleValue!=null || Description!=null)
      nodeList[i].style.display="none";
    }
 }
-
+location.reload();
 
 }
 const windowsize=window.matchMedia("(max-width:800px)");
@@ -94,7 +95,6 @@ SidebarClose()
           nodeList[i].style.display="block";
         }
        }
-
 } 
 document.getElementById("MaginifiyingGlass").addEventListener("click",SearchButton)
 function SearchButton()
@@ -146,31 +146,34 @@ function SidebarClose()
 /*------------------------------Display Notes ------------------------------------------------------*/
 function DisplayNotes()
 {
+
 removeAllChildNodes(document.querySelector('#BodyRow'));
 const Data=JSON.parse(window.localStorage.getItem("arr"));
-Data.forEach((element,index) => {
-  let Note=document.createElement("div");
-  Note.classList.add("card","mb-3",'mx-2')
-  Note.setAttribute("data-bs-toggle","modal");
-  Note.setAttribute("id",`${index}`)
-  Note.setAttribute("data-bs-target",".staticBackdrop");
-  Note.innerHTML=`<div class="card-body">
-  <h5 class="card-title">${element[0]}</h5>
-  <p class='card-text'>${element[1]}</p>
-</div>`;
-document.getElementById("BodyRow").appendChild(Note);
-
-});
+if(Data===null)
+{
+  document.querySelector('#BodyRow').classList.add("BodyS");
 }
-
-
+else{
+  Data.forEach((element,index) => {
+    document.querySelector('#BodyRow').classList.remove("BodyS");
+    let Note=document.createElement("div");
+    Note.classList.add("card","mb-3",'mx-2')
+    Note.setAttribute("data-bs-toggle","modal");
+    Note.setAttribute("id",`${index}`)
+    Note.setAttribute("data-bs-target",".staticBackdrop");
+    Note.innerHTML=`<div class="card-body">
+    <h5 class="card-title">${element[0]}</h5>
+    <p class='card-text'>${element[1]}</p>
+  </div>`;
+  document.getElementById("BodyRow").appendChild(Note);
+  });
+}
+}
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
   }
 }
-
-
 // search functionality
 const searchInput = document.getElementById("SearchBar");
 searchInput.addEventListener("input", function () {
@@ -179,12 +182,7 @@ searchInput.addEventListener("input", function () {
     note1.style.display = "none";
   } else {
     note1.style.display = "block";
-
   }
-  // closed.addEventListener("click", function () {
-  //   searchInput.value = "";
-  //   searchInput.focus();
-  // });
   const inputVal = searchInput.value.toLowerCase();
   const noteCards = document.getElementsByClassName("card");
   console.log(noteCards)
@@ -209,7 +207,6 @@ ClickOnCard.forEach((element,index)=>
 element.addEventListener("click",()=>
 {
   window.localStorage.setItem("Flag",index);
-  const Index=window.localStorage.getItem("Flag");
   let NoteTitle=element.querySelector(".card-title").innerText;
   let NoteBody=element.querySelector(".card-text").innerText;
   document.getElementById("ModalTitle").value=NoteTitle;
@@ -240,6 +237,7 @@ function DeleteNote()
   const DataStorage=  JSON.parse(window.localStorage.getItem("arr"));
   DataStorage.splice(Index,1)
   window.localStorage.setItem("arr", JSON.stringify(DataStorage));
+  location.reload();
   DisplayNotes();
 }
 function ArchieveNote()
@@ -248,5 +246,8 @@ function ArchieveNote()
   const DataStorage=  JSON.parse(window.localStorage.getItem("arr"));
   DataStorage.splice(Index,1)
   window.localStorage.setItem("arr", JSON.stringify(DataStorage));
+  location.reload();
   DisplayNotes();
 }
+
+/* Sign Out */

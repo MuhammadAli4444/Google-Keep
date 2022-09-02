@@ -6,10 +6,7 @@
 .Navbar{
     border: 1px solid red;
 }
-.NavbarItem
-{
-    border: 1px solid rgb(4, 0, 255);
-}
+
 .BannerImageInNavbar{
     width:41px;
     height: 42px;
@@ -71,23 +68,12 @@ input::placeholder {
     width: 20px;
     opacity: 0.6;
 }
-.cornerIconsInNavbar:hover{
-    background-color: #f1f1f1;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-}
+
 .imagelogoo5
 {
     height: 30px;
     width: 30px;
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
+   opacity: 0.5;
 }
 .MaginifiyingGlass{
     position: absolute;
@@ -256,8 +242,11 @@ textarea {
 .BodyS
 {
     background-image: url("/images/MainBodyBackgroundImage.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+  margin-top: 200px;
+    height: 200px;
 }
-
 .ModalBody
 {
     border: 1px solid rgb(221, 221, 221);

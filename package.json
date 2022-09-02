@@ -1,0 +1,22 @@
+{
+  "name": "googleauthentication",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuhammadAli4444/Google-Keep.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuhammadAli4444/Google-Keep/issues"
+  },
+  "homepage": "https://github.com/MuhammadAli4444/Google-Keep#readme",
+  "dependencies": {
+    "firebase": "^9.9.3"
+  },
+  "description": ""
+}
